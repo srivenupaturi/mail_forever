@@ -1,4 +1,8 @@
 MailForever::Application.routes.draw do
+  resources :recipients
+
+  resources :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

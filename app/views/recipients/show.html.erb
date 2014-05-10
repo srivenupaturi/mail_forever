@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>User:</b>
+  <%= @recipient.user_id %>
+</p>
+
+<p>
+  <b>Recipient email:</b>
+  <%= @recipient.recipient_email %>
+</p>
+
+<p>
+  <b>Disabled at:</b>
+  <%= @recipient.disabled_at %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @recipient.deleted_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_recipient_path(@recipient) %> |
+<%= link_to 'Back', recipients_path %>

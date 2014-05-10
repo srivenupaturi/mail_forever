@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  recipient_email: MyString
+  disabled_at: 2014-05-10 19:57:02
+  deleted_at: 2014-05-10 19:57:02
+
+two:
+  user_id: 1
+  recipient_email: MyString
+  disabled_at: 2014-05-10 19:57:02
+  deleted_at: 2014-05-10 19:57:02
