@@ -33,6 +33,13 @@ module MailForever
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+  if defined?(Bundler)
+    # If you precompile assets before deploying to production, use this line
+    Bundler.require(*Rails.groups(:assets => %w(development test)))
+    # If you want your assets lazily compiled in production, use this line
+    # Bundler.require(:default, :assets, Rails.env)
+  end
+
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
 
