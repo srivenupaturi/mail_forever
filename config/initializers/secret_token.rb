@@ -23,4 +23,4 @@ def secure_token
   end
 end
 
-MailForever::Application.config.secret_key_base = secure_token
+MailForever::Application.config.secret_token = secure_token
