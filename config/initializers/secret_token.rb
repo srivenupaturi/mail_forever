@@ -4,4 +4,21 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-MailForever::Application.config.secret_token = '577a196e74e3dee62dcb53b670e8a01bb39aaf5c77de485c7fcaf3d1ae5176fb5e528345b4b12a6160e60a5bc653c9b0af69f0ca875b3d52959eac55ad7a5bac'
+
+
+require 'securerandom'
+
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
+end
+
+MailForever::Application.config.secret_key_base = secure_token
