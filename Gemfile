@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.8'
 gem 'pg'
 gem 'json'
+gem 'rack', '1.4.1' # higher versions have a bug of returning an annoying warning about security
 
 group :development, :test do
   gem 'rspec-rails', '2.13.1'
@@ -15,5 +16,8 @@ group :assets do
 end
 
 group :test do
+  gem 'capybara', '1.1.4'
+  gem 'nokogiri', '~> 1.5.10'
+  gem 'rubyzip', '0.9.9'
   gem 'ruby-debug'
 end
