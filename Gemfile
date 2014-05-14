@@ -17,8 +17,6 @@ group :assets do
 end
 
 group :test do
-  gem 'capybara', '1.1.4'
-  gem 'nokogiri', '~> 1.5.10'
-  gem 'rubyzip', '0.9.9'
-  gem 'ruby-debug'
+  gem 'capybara', '2.1.0'
+  gem 'debugger'
 end
