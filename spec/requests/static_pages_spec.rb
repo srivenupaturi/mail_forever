@@ -9,7 +9,7 @@ describe "StaticPages" do
 
     it "should have title" do
       visit '/static_pages/home'
-      page.should have_selector('title', :text => '| Home')
+      page.should have_selector('title', :text => 'MailForever')
     end
   end
 
