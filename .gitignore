@@ -14,5 +14,6 @@
 /log/*.log
 /tmp
 .secret
+.DS_Store
 
 config/database.yml
