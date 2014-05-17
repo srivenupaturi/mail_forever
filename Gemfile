@@ -1,10 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
+ruby "2.0.0"
 gem 'pg'
 gem 'json'
 gem 'rack', '1.4.1' # higher versions have a bug of returning an annoying warning about security
 gem 'bootstrap-sass', '2.3.2.0'
+gem 'sass', '3.2.13'
 gem 'sprockets', '2.1.3'
 
 group :development, :test do
