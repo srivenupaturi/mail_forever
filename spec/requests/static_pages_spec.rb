@@ -1,51 +1,30 @@
 require 'spec_helper'
 
 describe "StaticPages" do
-  describe "#home" do
-    it "should return content for main page" do
-      visit root_path
-      expect(page).to have_content('MailForever')
-    end
 
-    it "should have title" do
-      visit root_path
-      page.should have_title 'MailForever'
-    end
+  subject { page } 
+
+  describe "#home" do
+    before { visit root_path }
+    it { should have_content 'MailForever' }
+    it { should have_title 'MailForever' }
   end
 
   describe "#about" do
-    it "should return content for About" do
-      visit about_path
-      expect(page).to have_content('About')
-    end
-
-    it "should have title" do
-      visit about_path
-      page.should have_title 'MailForever | About'
-    end
+    before { visit about_path }
+    it { should have_content 'About' }
+    it { should have_title 'MailForever | About' }
   end
 
   describe "#help" do
-    it "should return content for Help" do
-      visit help_path
-      expect(page).to have_content('Help')
-    end
-
-    it "should have the right title" do
-      visit help_path
-      page.should have_title 'MailForever | Help'
-    end
+    before { visit help_path }
+    it { should have_content('Help') }
+    it { should have_title 'MailForever | Help' }
   end
 
   describe "#Contact" do
-    it "should return content for Contact" do
-      visit contact_path
-      expect(page).to have_content('Contact')
-    end
-
-    it "should have the right title" do
-      visit contact_path
-      page.should have_title 'MailForever | Contact'
-    end
+    before { visit contact_path }
+    it { should have_content 'Contact' }
+    it { should have_title 'MailForever | Contact' }
   end
 end
