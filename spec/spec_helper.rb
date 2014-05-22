@@ -39,3 +39,7 @@ RSpec.configure do |config|
   config.order = "random"
   config.include Capybara::DSL
 end
+
+def create_user options = {}
+  User.new(name: "Example User", email: "user@example.com")
+end
