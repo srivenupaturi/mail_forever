@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-ruby "2.1.2"
+ruby "1.9.3"
 gem 'pg'
 gem 'json'
 gem 'rack', '1.4.1' # higher versions have a bug of returning an annoying warning about security
@@ -22,5 +22,5 @@ end
 
 group :test do
   gem 'capybara', '2.1.0'
-  gem 'byebug'
+  gem 'debugger'
 end

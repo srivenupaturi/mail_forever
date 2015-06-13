@@ -1,3 +1,4 @@
 MailForever:
 
 This app is to help the emailing tasks.
+ be rake assets:precompile 
