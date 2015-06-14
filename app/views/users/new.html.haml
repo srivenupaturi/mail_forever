@@ -1,6 +1,11 @@
 - provide :title, 'Sign up'
-%h1 Sign up here
-= render 'form'
+.row
+  .col-md-1
+  .col-md-5
+    = render 'signup_form'
+  .col-md-5
+    = render 'login_form'
+  .col-md-1
 = link_to 'Show', @user
 |
 \#{link_to 'Back', users_path}
