@@ -6,17 +6,9 @@ class User < ActiveRecord::Base
   
   has_many :recipients
 
-  def initialize attributes = {}
-    @email = attributes[:email]
-    @hashed_password = processed_password(attributes[:hashed_password])
-    @name = attributes[:name]
-    @user_name = attributes[:user_name]
-  end
-
   #TODO: salting
-  def processed_password text_password
+  def self.processed_password text_password
     if text_password
-      debugger
       Digest::MD5.hexdigest(text_password)
     end
   end
