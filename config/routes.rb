@@ -9,8 +9,9 @@ MailForever::Application.routes.draw do
 
   #user routes
   match '/signup', to: 'users#new', via: 'get'
-  match '/signin', to: 'users#login', via: 'get'
 
   resources :recipients
-  resources :users
+  resources :users do
+    post 'login', on: :collection
+  end
 end

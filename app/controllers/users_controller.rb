@@ -32,15 +32,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def login
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
-    end
-  end
-
   # GET /users/login
   # GET /users/login.json
   def new
@@ -60,18 +51,35 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(filter_params)
+    @user = User.new(filter_sign_up_params)
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, :notice => "Welcome #{@user.name}!" }
+        format.html { redirect_to @user.profile, :notice => "Welcome #{@user.name}!" }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
+        format.json { render :json => {errors: @user.errors, type: 'register'}, :status => :unprocessable_entity }
       end
     end
   end
+
+  # POST /users
+  # POST /users.json
+  def login
+    login_params = filter_login_params
+    @user = User.where('email = ?', login_params[:email]).first
+    respond_to do |format|
+      if (@user && @user.authenticate(login_params[:hashed_password]))
+        format.html { redirect_to @user.profile, :notice => "Welcome #{@user.name}!" }
+        format.json { render :json => @profile}
+      else
+       format.html { render :action => "new", notice: 'Invalid email or password.' }
+       format.json { render :json => {errors: ['Invalid email or password.'], type: 'login'}, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 
   # PUT /users/1
   # PUT /users/1.json
@@ -101,10 +109,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def filter_params
+  def filter_sign_up_params
     processed_params = params.require(:user).permit(:name, :email, :user_name)
     processed_params['hashed_password'] = User.processed_password(params[:hashed_password])
     processed_params
+  end
 
+  def filter_login_params
+    params.slice(:email, :hashed_password)
   end
 end

@@ -1,16 +1,12 @@
-= form_for(@user) do |f|
+= form_for(@user, url: login_users_path) do |f|
+  %br
   %h3
-    Already registered?
-  %h4
     Sign in
+  %br
   - if @user.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user.errors.count, "error")
-        prohibited this user from being saved:
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+    = render 'errors'
+  %br
+  %br
   .field
     = f.label :email
     %br/

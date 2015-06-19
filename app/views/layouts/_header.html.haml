@@ -1,14 +1,10 @@
 %header.navbar.navbar-fixed-top.navbar-inverse
-  .row
-    .col-md-1
-    .col-md-10
-      .navbar-inner
-        .container
-          = link_to image_tag("logo.jpg", :alt => "Rails"), '#', :id => "logo"
-          = link_to "MailForever", root_path, :id => "logo"
-          %nav
-            %ul.nav.pull-right.list-inline
-              %li= link_to "Home", root_path
-              %li= link_to "Help", help_path
-              %li= link_to "Sign in", signin_path
-    .col-md-1
+  .navbar-inner
+    .container
+      = link_to image_tag("logo.jpg", :alt => "Rails"), root_path , :id => "logo"
+      = link_to "MailForever", root_path, :id => "logo"
+      %nav
+        %ul.nav.pull-right.list-inline
+          %li= link_to "Home", root_path
+          %li= link_to "Help", help_path
+          %li= link_to "Sign in", signup_path
