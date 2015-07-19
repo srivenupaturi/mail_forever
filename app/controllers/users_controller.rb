@@ -21,21 +21,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
-  def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render :json => @user }
-    end
-  end
-
   # GET /users/login
   # GET /users/login.json
   def new
     @user = User.new
+    errors = params['errors'].to_a
+    errors.each{|e| @user.errors[:base] << e}
 
     respond_to do |format|
       format.html # new.html.erb
@@ -58,7 +49,8 @@ class UsersController < ApplicationController
         format.html { redirect_to @user.profile, :notice => "Welcome #{@user.name}!" }
         format.json { render :json => @user, :status => :created, :location => @user }
       else
-        format.html { render :action => "new" }
+        errors = @user.errors.full_messages
+        format.html { redirect_to signup_path({errors: errors}), flash: {error: 'Invalid email or password.'}}
         format.json { render :json => {errors: @user.errors, type: 'register'}, :status => :unprocessable_entity }
       end
     end
@@ -74,7 +66,8 @@ class UsersController < ApplicationController
         format.html { redirect_to @user.profile, :notice => "Welcome #{@user.name}!" }
         format.json { render :json => @profile}
       else
-       format.html { render :action => "new", notice: 'Invalid email or password.' }
+       errors = ['Invalid email or password.']
+       format.html { redirect_to signup_path({errors: errors}), :action => "new", notice: 'Invalid email or password.'}
        format.json { render :json => {errors: ['Invalid email or password.'], type: 'login'}, :status => :unprocessable_entity }
       end
     end
@@ -94,18 +87,6 @@ class UsersController < ApplicationController
         format.html { render :action => "edit" }
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
     end
   end
 

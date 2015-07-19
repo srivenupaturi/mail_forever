@@ -5,6 +5,7 @@ ruby "1.9.3"
 gem 'pg'
 gem 'json'
 gem 'rack', '1.4.1' # higher versions have a bug of returning an annoying warning about security
+gem 'thin'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sass', '3.2.13'
 gem 'sprockets', '2.1.3'
@@ -14,6 +15,7 @@ gem 'strong_parameters'
 gem 'haml'
 
 group :development, :test do
+  gem 'quiet_assets'
   gem 'rspec-rails', '2.13.1'
 end
 

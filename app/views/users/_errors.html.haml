@@ -1,7 +1,6 @@
 - if @user.errors.any?
-  #error_explanation
-    %h2 
-      Please correct the following error(s) : 
-    %ul 
+  .panel.panel-warning
+    .panel-heading Please correct the following error(s) : 
+    %ul.list-gorup
       - @user.errors.full_messages.each do |msg|
-        %li= msg 
+        %li.list-group-item.error-message= msg 

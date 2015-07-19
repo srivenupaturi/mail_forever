@@ -1,12 +1,7 @@
-= form_for(@user, url: login_users_path) do |f|
+=form_for @user, url: login_users_path, method: 'post',  html: {class: "user"} do |f|
   %br
   %h3
     Sign in
-  %br
-  - if @user.errors.any?
-    = render 'errors'
-  %br
-  %br
   .field
     = f.label :email
     %br/
