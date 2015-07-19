@@ -11,31 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20150619210002) do
-
-  create_table "group_recipients", :force => true do |t|
-    t.integer  "group_id"
-    t.integer  "recipient_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "groups", :force => true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "recipients", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "recipient_email"
-    t.datetime "disabled_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
+ActiveRecord::Schema.define(:version => 20140510235657) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -46,7 +22,4 @@ ActiveRecord::Schema.define(:version => 20150619210002) do
     t.datetime "updated_at",                    :null => false
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["name"], :name => "index_users_on_name"
-  add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
 end
