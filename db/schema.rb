@@ -49,5 +49,4 @@ ActiveRecord::Schema.define(:version => 20150619210002) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["name"], :name => "index_users_on_name"
   add_index "users", ["user_name"], :name => "index_users_on_user_name", :unique => true
-
 end

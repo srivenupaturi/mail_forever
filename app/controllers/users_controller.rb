@@ -21,8 +21,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/login
-  # GET /users/login.json
+  # GET /users/signup
+  # GET /users/signup.json
   def new
     @user = User.new
     errors = params['errors'].to_a
@@ -59,10 +59,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def login
-    login_params = filter_login_params
-    @user = User.where('email = ?', login_params[:email]).first
     respond_to do |format|
-      if (@user && @user.authenticate(login_params[:hashed_password]))
+      if (User.authenticate(filter_login_params))
         format.html { redirect_to @user.profile, :notice => "Welcome #{@user.name}!" }
         format.json { render :json => @profile}
       else
@@ -92,11 +90,16 @@ class UsersController < ApplicationController
 
   def filter_sign_up_params
     processed_params = params.require(:user).permit(:name, :email, :user_name)
-    processed_params['hashed_password'] = User.processed_password(params[:hashed_password])
+    processed_params['hashed_password'] = User.processed_password(params[:user][:hashed_password])
+    processed_params['user_name'] = random_alphanumeric
     processed_params
   end
 
   def filter_login_params
-    params.slice(:email, :hashed_password)
+    params['user'].slice(:email, :hashed_password)
+  end
+
+  def random_alphanumeric
+    (0...8).map { (65 + rand(26)).chr }.join
   end
 end
